@@ -28,3 +28,24 @@ class Solution:
         nodevals.append(root.val)
         if root.right:
             self.visit(root.right, nodevals)
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+import sys
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        return self.helper(root, -sys.maxint, sys.maxint)
+    def helper(self, root, minval, maxval):
+        if not root:
+            return True
+        if root.val < maxval and root.val > minval and self.helper(root.left, minval, root.val) and self.helper(root.right, root.val, maxval):
+            return True
+            
+        return False
