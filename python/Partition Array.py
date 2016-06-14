@@ -11,17 +11,14 @@ class Solution:
         if not nums:
             return 0
         start, end = 0, len(nums) - 1
-        while start < len(nums) and nums[start] < k:
-                start += 1
+
         while start <= end:
-            if nums[start] >= k:
-                while end >= 0 and nums[end] >= k :
-                    end -= 1
-                if end <= start:
-                    break
+            while start < len(nums) and nums[start] < k:
+                start += 1
+            while end >= 0 and nums[end] >= k :
+                end -= 1
+            if end > start:
                 nums[start], nums[end] = nums[end], nums[start]
                 start += 1
                 end -= 1
-            else:
-                start += 1
         return start
